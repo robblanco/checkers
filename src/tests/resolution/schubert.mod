@@ -32,12 +32,17 @@ problem "schubert"
 	% ex 24
 	(some (x\ some (y\ (p(is_snail x)) &+& (p(is_grain y)) &+& (n(eats x y))))) !-!
 %%% DUMMY %%%
-	(p(is_animal w))
+%	(p(is_animal w))
+	(n(eats w f))
 %%% DUMMY %%%
 )
 (rsteps [
-	resolv (rid (idx 1) (sub [w])) (rid (idx 6) (sub [])) 230,
-	resolv (rid (idx 230) (sub [])) (rid (idx 26) (sub [])) 0
+%	resolv (rid (idx 1) (sub [w])) (rid (idx 6) (sub [])) 230,
+%	resolv (rid (idx 230) (sub [])) (rid (idx 26) (sub [])) 0
+	resolv (rid (idx 18) (sub [w, f])) (rid (idx 7) (sub [])) 261,
+	resolv (rid (idx 261) (sub [])) (rid (idx 6) (sub [])) 260,
+	resolv (rid (idx 260) (sub [])) (rid (idx 26) (sub [])) 0
+
 ] estate)
 (map [
 	pr   1 (some (x\ (p(is_wolf  x)) &+& (n(is_animal x)))),
@@ -64,10 +69,14 @@ problem "schubert"
 	pr  23 (some (x\ some (y\ (p(is_cater x)) &+& (p(is_grain y)) &+& (n(eats x y))))),
 	pr  25 (some (x\ some (y\ (p(is_snail x)) &+& (p(is_grain y)) &+& (n(eats x y))))),
 %%% DUMMY %%%
-	pr  26 (p(is_animal w)),
+%	pr  26 (p(is_animal w)),
+	pr  26 (n(eats w f)),
 %%% DUMMY %%%
 
 	pr 230 (n(is_animal w)),
+
+	pr 260 (p(eats w f)),
+	pr 261 ((p(is_wolf  w)) &+& (p(eats w f))),
 
 	pr   0 t+
 ])
