@@ -31,18 +31,29 @@ problem "schubert"
 	(some (x\ some (y\ (p(is_cater x)) &+& (p(is_grain y)) &+& (n(eats x y))))) !-!
 	% ex 24
 	(some (x\ some (y\ (p(is_snail x)) &+& (p(is_grain y)) &+& (n(eats x y))))) !-!
+	(some (x\ some (y\ some (z\ (p(is_animal x)) &+& (p(is_animal y)) &+& (p(is_grain z)) &+& (p(eats x y)) &+& (p(eats y z))))))
 %%% DUMMY %%%
 %	(p(is_animal w))
-	(n(eats w f))
+%	(n(eats w f))
+!-!
+	(n(is_animal f)) !-! % 110
+	(n(is_animal b)) !-! % 120
+	(n(eats f b)) !-!    % 140
+	(n(eats b g))        % 150
 %%% DUMMY %%%
 )
 (rsteps [
 %	resolv (rid (idx 1) (sub [w])) (rid (idx 6) (sub [])) 230,
 %	resolv (rid (idx 230) (sub [])) (rid (idx 26) (sub [])) 0
-	resolv (rid (idx 18) (sub [w, f])) (rid (idx 7) (sub [])) 261,
-	resolv (rid (idx 261) (sub [])) (rid (idx 6) (sub [])) 260,
-	resolv (rid (idx 260) (sub [])) (rid (idx 26) (sub [])) 0
-
+%%	resolv (rid (idx 18) (sub [w, f])) (rid (idx 7) (sub [])) 261,
+%%	resolv (rid (idx 261) (sub [])) (rid (idx 6) (sub [])) 260,
+%%	resolv (rid (idx 260) (sub [])) (rid (idx 26) (sub [])) 0
+% x y z, f b g
+	resolv (rid (idx  26) (sub [f, b, g])) (rid (idx 110) (sub [])) 104,
+	resolv (rid (idx 104) (sub []       )) (rid (idx 120) (sub [])) 103,
+	resolv (rid (idx 103) (sub []       )) (rid (idx   7) (sub [])) 102,
+	resolv (rid (idx 102) (sub []       )) (rid (idx 140) (sub [])) 101,
+	resolv (rid (idx 101) (sub []       )) (rid (idx 150) (sub []))   0
 ] estate)
 (map [
 	pr   1 (some (x\ (p(is_wolf  x)) &+& (n(is_animal x)))),
@@ -68,10 +79,24 @@ problem "schubert"
 	pr  21 (some (x\ some (y\ (p(is_bird  x)) &+& (p(is_snail y)) &+& (p(eats x y))))),
 	pr  23 (some (x\ some (y\ (p(is_cater x)) &+& (p(is_grain y)) &+& (n(eats x y))))),
 	pr  25 (some (x\ some (y\ (p(is_snail x)) &+& (p(is_grain y)) &+& (n(eats x y))))),
+	pr  26 (some (x\ some (y\ some (z\ (p(is_animal x)) &+& (p(is_animal y)) &+& (p(is_grain z)) &+& (p(eats x y)) &+& (p(eats y z)))))),
 %%% DUMMY %%%
 %	pr  26 (p(is_animal w)),
 	pr  26 (n(eats w f)),
 %%% DUMMY %%%
+
+	pr 101 (p(eats b g)),
+	pr 102 ((p(eats f b)) &+& (p(eats b g))),
+	pr 103 ((p(is_grain g)) &+& (p(eats f b)) &+& (p(eats b g))),
+	pr 104 ((p(is_animal b)) &+& (p(is_grain g)) &+& (p(eats f b)) &+& (p(eats b g))),
+
+	pr 110 (n(is_animal f)),
+
+	pr 120 (n(is_animal b)),
+
+	pr 140 (n(eats f b)),
+
+	pr 150 (n(eats b g)),
 
 	pr 230 (n(is_animal w)),
 
