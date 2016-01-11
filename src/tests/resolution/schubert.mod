@@ -32,31 +32,8 @@ problem "schubert"
 	% ex 24
 	(some (x\ some (y\ (p(is_snail x)) &+& (p(is_grain y)) &+& (n(eats x y))))) !-!
 	(some (x\ some (y\ some (z\ (p(is_animal x)) &+& (p(is_animal y)) &+& (p(is_grain z)) &+& (p(eats x y)) &+& (p(eats y z))))))
-%%% DUMMY %%%
-%	(p(is_animal w))
-%	(n(eats w f))
-%!-!
-%	(n(is_animal f)) !-! % 110
-%	(n(is_animal b)) !-! % 120
-%	(n(eats f b)) !-!    % 140
-%	(n(eats b g)) !-!    % 150
-%	(n(is_plant g)) !-!  % 160
-%	(p(eats f g)) !-!    % 170
-%	(n(much_smaller b f)) !-! % 180
-%	(n(is_animal s)) !-! % 190
-%	(n(much_smaller s b)) !-! % 200
-%	(n(eats s g)) !-!    % 210
-%	(p(eats b s)) !-!    % 220
-%	(n(is_animal w)) !-! % 230
-%	(p(eats w g)) !-!    % 240
-%	(n(much_smaller f w)) !-! % 250
-%	(p(eats w f))        % 260
-%%% DUMMY %%%
 )
 (rsteps [
-%	resolv (rid (idx 230) (sub [])) (rid (idx 26) (sub [])) 0
-%%	resolv (rid (idx 260) (sub [])) (rid (idx 26) (sub [])) 0
-% b g s g = x y z v
 	resolv (rid (idx   2) (sub [f]         )) (rid (idx   7) (sub [])) 110,
 
 	resolv (rid (idx   3) (sub [b]         )) (rid (idx   8) (sub [])) 120,
@@ -117,7 +94,6 @@ problem "schubert"
 	resolv (rid (idx 103) (sub []          )) (rid (idx   7) (sub [])) 102,
 	resolv (rid (idx 102) (sub []          )) (rid (idx 140) (sub [])) 101,
 	resolv (rid (idx 101) (sub []          )) (rid (idx 150) (sub []))   0
-
 ] estate)
 (map [
 	pr   1 (some (x\ (p(is_wolf  x)) &+& (n(is_animal x)))),
@@ -144,10 +120,6 @@ problem "schubert"
 	pr  23 (some (x\ some (y\ (p(is_cater x)) &+& (p(is_grain y)) &+& (n(eats x y))))),
 	pr  25 (some (x\ some (y\ (p(is_snail x)) &+& (p(is_grain y)) &+& (n(eats x y))))),
 	pr  26 (some (x\ some (y\ some (z\ (p(is_animal x)) &+& (p(is_animal y)) &+& (p(is_grain z)) &+& (p(eats x y)) &+& (p(eats y z)))))),
-%%% DUMMY %%%
-%	pr  26 (p(is_animal w)),
-	pr  26 (n(eats w f)),
-%%% DUMMY %%%
 
 	pr 101 (p(eats b g)),
 	pr 102 ((p(eats f b)) &+& (p(eats b g))),
