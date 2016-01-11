@@ -18,7 +18,7 @@ problem "schubert"
 	(n(is_snail s)) !-!
 	(n(is_grain g)) !-!
 	(some (x\ (p(is_grain x)) &+& (n(is_plant  x)))) !-!
-	(some (x\ some (y\ some (z\ some (v\ (p(is_animal x)) &+& (p(is_plant y)) &+& (p(is_animal z)) &+& (p(is_plant v)) &+& (n(eats x y)) &+& (p(much_smaller z x)) &+& (p(eats z v)) &+& (p(eats x z))))))) !-!
+	(some (x\ some (y\ some (z\ some (v\ (p(is_animal x)) &+& (p(is_plant y)) &+& (p(is_animal z)) &+& (p(is_plant v)) &+& (n(eats x y)) &+& (p(much_smaller z x)) &+& (p(eats z v)) &+& (n(eats x z))))))) !-!
 	(some (x\ some (y\ (p(is_cater x)) &+& (p(is_bird  y)) &+& (n(much_smaller x y))))) !-!
 	(some (x\ some (y\ (p(is_snail x)) &+& (p(is_bird  y)) &+& (n(much_smaller x y))))) !-!
 	(some (x\ some (y\ (p(is_bird  x)) &+& (p(is_fox   y)) &+& (n(much_smaller x y))))) !-!
@@ -36,10 +36,13 @@ problem "schubert"
 %	(p(is_animal w))
 %	(n(eats w f))
 !-!
-	(n(is_animal f)) !-! % 110
-	(n(is_animal b)) !-! % 120
-	(n(eats f b)) !-!    % 140
-	(n(eats b g))        % 150
+%	(n(is_animal f)) !-! % 110
+%	(n(is_animal b)) !-! % 120
+%	(n(eats f b)) !-!    % 140
+	(n(eats b g)) !-!    % 150
+	(n(is_plant g)) !-!  % 160
+	(p(eats f g)) !-!    % 170
+	(n(much_smaller b f))% 180
 %%% DUMMY %%%
 )
 (rsteps [
@@ -49,11 +52,24 @@ problem "schubert"
 %%	resolv (rid (idx 261) (sub [])) (rid (idx 6) (sub [])) 260,
 %%	resolv (rid (idx 260) (sub [])) (rid (idx 26) (sub [])) 0
 % x y z, f b g
+	resolv (rid (idx   2) (sub [f]      )) (rid (idx   7) (sub [])) 110,
+
+	resolv (rid (idx   3) (sub [b]      )) (rid (idx   8) (sub [])) 120,
+
+	resolv (rid (idx  13) (sub [f, g, b, g])) (rid (idx 110) (sub [])) 146,
+	resolv (rid (idx 146) (sub []          )) (rid (idx 160) (sub [])) 145,
+	resolv (rid (idx 145) (sub []          )) (rid (idx 120) (sub [])) 144,
+	resolv (rid (idx 144) (sub []          )) (rid (idx 160) (sub [])) 143,
+	resolv (rid (idx 143) (sub []          )) (rid (idx 170) (sub [])) 142,
+	resolv (rid (idx 142) (sub []          )) (rid (idx 180) (sub [])) 141,
+	resolv (rid (idx 141) (sub []          )) (rid (idx 150) (sub [])) 140,
+
 	resolv (rid (idx  26) (sub [f, b, g])) (rid (idx 110) (sub [])) 104,
 	resolv (rid (idx 104) (sub []       )) (rid (idx 120) (sub [])) 103,
 	resolv (rid (idx 103) (sub []       )) (rid (idx   7) (sub [])) 102,
 	resolv (rid (idx 102) (sub []       )) (rid (idx 140) (sub [])) 101,
 	resolv (rid (idx 101) (sub []       )) (rid (idx 150) (sub []))   0
+
 ] estate)
 (map [
 	pr   1 (some (x\ (p(is_wolf  x)) &+& (n(is_animal x)))),
@@ -68,7 +84,7 @@ problem "schubert"
 	pr  10 (n(is_snail s)),
 	pr  11 (n(is_grain g)),
 	pr  12 (some (x\ (p(is_grain x)) &+& (n(is_plant  x)))),
-	pr  13 (some (x\ some (y\ some (z\ some (v\ (p(is_animal x)) &+& (p(is_plant y)) &+& (p(is_animal z)) &+& (p(is_plant v)) &+& (n(eats x y)) &+& (p(much_smaller z x)) &+& (p(eats z v)) &+& (p(eats x z))))))),
+	pr  13 (some (x\ some (y\ some (z\ some (v\ (p(is_animal x)) &+& (p(is_plant y)) &+& (p(is_animal z)) &+& (p(is_plant v)) &+& (n(eats x y)) &+& (p(much_smaller z x)) &+& (p(eats z v)) &+& (n(eats x z))))))),
 	pr  14 (some (x\ some (y\ (p(is_cater x)) &+& (p(is_bird  y)) &+& (n(much_smaller x y))))),
 	pr  15 (some (x\ some (y\ (p(is_snail x)) &+& (p(is_bird  y)) &+& (n(much_smaller x y))))),
 	pr  16 (some (x\ some (y\ (p(is_bird  x)) &+& (p(is_fox   y)) &+& (n(much_smaller x y))))),
@@ -95,8 +111,20 @@ problem "schubert"
 	pr 120 (n(is_animal b)),
 
 	pr 140 (n(eats f b)),
+	pr 141 ((p(eats b g)) &+& (n(eats f b))),
+	pr 142 ((p(much_smaller b f)) &+& (p(eats b g)) &+& (n(eats f b))),
+	pr 143 ((n(eats f g)) &+& (p(much_smaller b f)) &+& (p(eats b g)) &+& (n(eats f b))),
+	pr 144 ((p(is_plant g)) &+& (n(eats f g)) &+& (p(much_smaller b f)) &+& (p(eats b g)) &+& (n(eats f b))),
+	pr 145 ((p(is_animal b)) &+& (p(is_plant g)) &+& (n(eats f g)) &+& (p(much_smaller b f)) &+& (p(eats b g)) &+& (n(eats f b))),
+	pr 146 ((p(is_plant g)) &+& (p(is_animal b)) &+& (p(is_plant g)) &+& (n(eats f g)) &+& (p(much_smaller b f)) &+& (p(eats b g)) &+& (n(eats f b))),
 
 	pr 150 (n(eats b g)),
+
+	pr 160 (n(is_plant g)),
+
+	pr 170 (p(eats f g)),
+
+	pr 180 (n(much_smaller b f)),
 
 	pr 230 (n(is_animal w)),
 
