@@ -40,13 +40,17 @@ problem "schubert"
 %	(n(is_animal b)) !-! % 120
 %	(n(eats f b)) !-!    % 140
 %	(n(eats b g)) !-!    % 150
-	(n(is_plant g)) !-!  % 160
-	(p(eats f g)) !-!    % 170
+%	(n(is_plant g)) !-!  % 160
+%	(p(eats f g)) !-!    % 170
 	(n(much_smaller b f)) !-! % 180
 	(n(is_animal s)) !-! % 190
 	(n(much_smaller s b)) !-! % 200
 	(n(eats s g)) !-!    % 210 NEG?
-	(p(eats b s))        % 220 NEG?
+	(p(eats b s)) !-!    % 220 NEG?
+	(n(is_animal w)) !-! % 230
+	(p(eats w g)) !-!    % 240
+	(n(much_smaller f w)) !-! % 250
+	(p(eats w f))        % 260
 %%% DUMMY %%%
 )
 (rsteps [
@@ -59,6 +63,16 @@ problem "schubert"
 	resolv (rid (idx   2) (sub [f]      )) (rid (idx   7) (sub [])) 110,
 
 	resolv (rid (idx   3) (sub [b]      )) (rid (idx   8) (sub [])) 120,
+
+	resolv (rid (idx  12) (sub [g]      )) (rid (idx  11) (sub [])) 160,
+
+	resolv (rid (idx  13) (sub [w, g, f, g])) (rid (idx 230) (sub [])) 176,
+	resolv (rid (idx 176) (sub []          )) (rid (idx 160) (sub [])) 175,
+	resolv (rid (idx 175) (sub []          )) (rid (idx 110) (sub [])) 174,
+	resolv (rid (idx 174) (sub []          )) (rid (idx 160) (sub [])) 173,
+	resolv (rid (idx 173) (sub []          )) (rid (idx 240) (sub [])) 172,
+	resolv (rid (idx 172) (sub []          )) (rid (idx 250) (sub [])) 171,
+	resolv (rid (idx 171) (sub []          )) (rid (idx 260) (sub [])) 170,
 
 	resolv (rid (idx  13) (sub [b, g, s, g])) (rid (idx 120) (sub [])) 156,
 	resolv (rid (idx 156) (sub []          )) (rid (idx 160) (sub [])) 155,
@@ -131,7 +145,6 @@ problem "schubert"
 	pr 146 ((p(is_plant g)) &+& (p(is_animal b)) &+& (p(is_plant g)) &+& (n(eats f g)) &+& (p(much_smaller b f)) &+& (p(eats b g)) &+& (n(eats f b))),
 
 	pr 150 (n(eats b g)),
-%%%
 	pr 151 ((n(eats b g)) &+& (n(eats b s))),
 	pr 152 ((n(eats b g)) &+& (p(eats s g)) &+& (n(eats b s))),
 	pr 153 ((n(eats b g)) &+& (p(much_smaller s b)) &+& (p(eats s g)) &+& (n(eats b s))),
@@ -142,6 +155,12 @@ problem "schubert"
 	pr 160 (n(is_plant g)),
 
 	pr 170 (p(eats f g)),
+	pr 171 ((p(eats f g)) &+& (n(eats w f))),
+	pr 172 ((p(much_smaller f w)) &+& (p(eats f g)) &+& (n(eats w f))),
+	pr 173 ((n(eats w g)) &+& (p(much_smaller f w)) &+& (p(eats f g)) &+& (n(eats w f))),
+	pr 174 ((p(is_plant g)) &+& (n(eats w g)) &+& (p(much_smaller f w)) &+& (p(eats f g)) &+& (n(eats w f))),
+	pr 175 ((p(is_animal f)) &+& (p(is_plant g)) &+& (n(eats w g)) &+& (p(much_smaller f w)) &+& (p(eats f g)) &+& (n(eats w f))),
+	pr 176 ((p(is_plant g)) &+& (p(is_animal f)) &+& (p(is_plant g)) &+& (n(eats w g)) &+& (p(much_smaller f w)) &+& (p(eats f g)) &+& (n(eats w f))),
 
 	pr 180 (n(much_smaller b f)),
 
@@ -154,6 +173,10 @@ problem "schubert"
 	pr 220 (p(eats b s)), % NEG?
 
 	pr 230 (n(is_animal w)),
+
+	pr 240 (p(eats w g)),
+
+	pr 250 (n(much_smaller f w)),
 
 	pr 260 (p(eats w f)),
 	pr 261 ((p(is_wolf  w)) &+& (p(eats w f))),
