@@ -39,10 +39,14 @@ problem "schubert"
 %	(n(is_animal f)) !-! % 110
 %	(n(is_animal b)) !-! % 120
 %	(n(eats f b)) !-!    % 140
-	(n(eats b g)) !-!    % 150
+%	(n(eats b g)) !-!    % 150
 	(n(is_plant g)) !-!  % 160
 	(p(eats f g)) !-!    % 170
-	(n(much_smaller b f))% 180
+	(n(much_smaller b f)) !-! % 180
+	(n(is_animal s)) !-! % 190
+	(n(much_smaller s b)) !-! % 200
+	(n(eats s g)) !-!    % 210 NEG?
+	(p(eats b s))        % 220 NEG?
 %%% DUMMY %%%
 )
 (rsteps [
@@ -51,10 +55,18 @@ problem "schubert"
 %%	resolv (rid (idx 18) (sub [w, f])) (rid (idx 7) (sub [])) 261,
 %%	resolv (rid (idx 261) (sub [])) (rid (idx 6) (sub [])) 260,
 %%	resolv (rid (idx 260) (sub [])) (rid (idx 26) (sub [])) 0
-% x y z, f b g
+% b g s g = x y z v
 	resolv (rid (idx   2) (sub [f]      )) (rid (idx   7) (sub [])) 110,
 
 	resolv (rid (idx   3) (sub [b]      )) (rid (idx   8) (sub [])) 120,
+
+	resolv (rid (idx  13) (sub [b, g, s, g])) (rid (idx 120) (sub [])) 156,
+	resolv (rid (idx 156) (sub []          )) (rid (idx 160) (sub [])) 155,
+	resolv (rid (idx 155) (sub []          )) (rid (idx 190) (sub [])) 154,
+	resolv (rid (idx 154) (sub []          )) (rid (idx 160) (sub [])) 153,
+	resolv (rid (idx 153) (sub []          )) (rid (idx 200) (sub [])) 152,
+	resolv (rid (idx 152) (sub []          )) (rid (idx 210) (sub [])) 151,
+	resolv (rid (idx 151) (sub []          )) (rid (idx 220) (sub [])) 150,
 
 	resolv (rid (idx  13) (sub [f, g, b, g])) (rid (idx 110) (sub [])) 146,
 	resolv (rid (idx 146) (sub []          )) (rid (idx 160) (sub [])) 145,
@@ -119,12 +131,27 @@ problem "schubert"
 	pr 146 ((p(is_plant g)) &+& (p(is_animal b)) &+& (p(is_plant g)) &+& (n(eats f g)) &+& (p(much_smaller b f)) &+& (p(eats b g)) &+& (n(eats f b))),
 
 	pr 150 (n(eats b g)),
+%%%
+	pr 151 ((n(eats b g)) &+& (n(eats b s))),
+	pr 152 ((n(eats b g)) &+& (p(eats s g)) &+& (n(eats b s))),
+	pr 153 ((n(eats b g)) &+& (p(much_smaller s b)) &+& (p(eats s g)) &+& (n(eats b s))),
+	pr 154 ((p(is_plant g)) &+& (n(eats b g)) &+& (p(much_smaller s b)) &+& (p(eats s g)) &+& (n(eats b s))),
+	pr 155 ((p(is_animal s)) &+& (p(is_plant g)) &+& (n(eats b g)) &+& (p(much_smaller s b)) &+& (p(eats s g)) &+& (n(eats b s))),
+	pr 156 ((p(is_plant g)) &+& (p(is_animal s)) &+& (p(is_plant g)) &+& (n(eats b g)) &+& (p(much_smaller s b)) &+& (p(eats s g)) &+& (n(eats b s))),
 
 	pr 160 (n(is_plant g)),
 
 	pr 170 (p(eats f g)),
 
 	pr 180 (n(much_smaller b f)),
+
+	pr 190 (n(is_animal s)),
+
+	pr 200 (n(much_smaller s b)),
+
+	pr 210 (n(eats s g)), % NEG?
+
+	pr 220 (p(eats b s)), % NEG?
 
 	pr 230 (n(is_animal w)),
 
