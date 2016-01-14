@@ -1,4 +1,4 @@
-sig schubert.
+sig steamroller.
 
 accum_sig lkf-kernel.
 accum_sig binary_res_fol.

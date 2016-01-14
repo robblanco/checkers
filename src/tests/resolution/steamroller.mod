@@ -1,10 +1,10 @@
-module schubert.
+module steamroller.
 
 accumulate lkf-kernel.
 accumulate binary_res_fol.
 accumulate resolution_steps.
 
-problem "schubert"
+problem "steamroller"
 (
 	(some (x\ (p(is_wolf  x)) &+& (n(is_animal x)))) !-!
 	(some (x\ (p(is_fox   x)) &+& (n(is_animal x)))) !-!
