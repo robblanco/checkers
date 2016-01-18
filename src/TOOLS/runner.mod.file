@@ -27,7 +27,7 @@ run :-
 
 resolve [] F Cert :-
   if (entry_point Cert F)
-      (print "Success\n==============================================\n")
+      (print "Success\n==============================================\n", term_to_string Cert CertStr, print CertStr, print "\n")
 		  (print "Fail\n", halt), fail.
 resolve [(pr I C) | R] F Cert :-
   mapsto I C => resolve R F Cert.

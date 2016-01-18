@@ -5,6 +5,6 @@ accum_sig res_base.
 accum_sig lists.
 accum_sig certificatesLKF.
 
-type rid index -> rclause.
-type dlist2 rclause -> cert.
-type dlist3 cert.
+type rid_ index -> rclause.
+type dlist2_ rclause -> cert.
+type dlist3_ cert.
