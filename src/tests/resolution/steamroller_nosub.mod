@@ -34,66 +34,66 @@ problem "steamroller_nosub"
 	(some (x\ some (y\ some (z\ (p(is_animal x)) &+& (p(is_animal y)) &+& (p(is_grain z)) &+& (p(eats x y)) &+& (p(eats y z))))))
 )
 (rsteps [
-	resolv (rid (idx   2)) (rid (idx   7)) 110,
+	resolv (rid_ (idx   2)) (rid_ (idx   7)) 110,
 
-	resolv (rid (idx   3)) (rid (idx   8)) 120,
+	resolv (rid_ (idx   3)) (rid_ (idx   8)) 120,
 
-	resolv (rid (idx  12)) (rid (idx  11)) 160,
+	resolv (rid_ (idx  12)) (rid_ (idx  11)) 160,
 
-	resolv (rid (idx   5)) (rid (idx  10)) 190,
+	resolv (rid_ (idx   5)) (rid_ (idx  10)) 190,
 
-	resolv (rid (idx   1)) (rid (idx   6)) 230,
+	resolv (rid_ (idx   1)) (rid_ (idx   6)) 230,
 
-	resolv (rid (idx  18)) (rid (idx   6)) 261,
-	resolv (rid (idx 261)) (rid (idx   7)) 260,
+	resolv (rid_ (idx  18)) (rid_ (idx   6)) 261,
+	resolv (rid_ (idx 261)) (rid_ (idx   7)) 260,
 
-	resolv (rid (idx  17)) (rid (idx   7)) 251,
-	resolv (rid (idx 251)) (rid (idx   6)) 250,
+	resolv (rid_ (idx  17)) (rid_ (idx   7)) 251,
+	resolv (rid_ (idx 251)) (rid_ (idx   6)) 250,
 
-	resolv (rid (idx  19)) (rid (idx   6)) 241,
-	resolv (rid (idx 241)) (rid (idx  11)) 240,
+	resolv (rid_ (idx  19)) (rid_ (idx   6)) 241,
+	resolv (rid_ (idx 241)) (rid_ (idx  11)) 240,
 
-	resolv (rid (idx  21)) (rid (idx   8)) 221,
-	resolv (rid (idx 221)) (rid (idx  10)) 220,
+	resolv (rid_ (idx  21)) (rid_ (idx   8)) 221,
+	resolv (rid_ (idx 221)) (rid_ (idx  10)) 220,
 
-	resolv (rid (idx  25)) (rid (idx  10)) 211,
-	resolv (rid (idx 211)) (rid (idx  11)) 210,
+	resolv (rid_ (idx  25)) (rid_ (idx  10)) 211,
+	resolv (rid_ (idx 211)) (rid_ (idx  11)) 210,
 
-	resolv (rid (idx  15)) (rid (idx  10)) 201,
-	resolv (rid (idx 201)) (rid (idx   8)) 200,
+	resolv (rid_ (idx  15)) (rid_ (idx  10)) 201,
+	resolv (rid_ (idx 201)) (rid_ (idx   8)) 200,
 
-	resolv (rid (idx  16)) (rid (idx   8)) 181,
-	resolv (rid (idx 181)) (rid (idx   7)) 180,
+	resolv (rid_ (idx  16)) (rid_ (idx   8)) 181,
+	resolv (rid_ (idx 181)) (rid_ (idx   7)) 180,
 
-	resolv (rid (idx  13)) (rid (idx 230)) 176,
-	resolv (rid (idx 176)) (rid (idx 160)) 175,
-	resolv (rid (idx 175)) (rid (idx 110)) 174,
-	resolv (rid (idx 174)) (rid (idx 160)) 173,
-	resolv (rid (idx 173)) (rid (idx 240)) 172,
-	resolv (rid (idx 172)) (rid (idx 250)) 171,
-	resolv (rid (idx 171)) (rid (idx 260)) 170,
+	resolv (rid_ (idx  13)) (rid_ (idx 230)) 176,
+	resolv (rid_ (idx 176)) (rid_ (idx 160)) 175,
+	resolv (rid_ (idx 175)) (rid_ (idx 110)) 174,
+	resolv (rid_ (idx 174)) (rid_ (idx 160)) 173,
+	resolv (rid_ (idx 173)) (rid_ (idx 240)) 172,
+	resolv (rid_ (idx 172)) (rid_ (idx 250)) 171,
+	resolv (rid_ (idx 171)) (rid_ (idx 260)) 170,
 
-	resolv (rid (idx  13)) (rid (idx 120)) 156,
-	resolv (rid (idx 156)) (rid (idx 160)) 155,
-	resolv (rid (idx 155)) (rid (idx 190)) 154,
-	resolv (rid (idx 154)) (rid (idx 160)) 153,
-	resolv (rid (idx 153)) (rid (idx 200)) 152,
-	resolv (rid (idx 152)) (rid (idx 210)) 151,
-	resolv (rid (idx 151)) (rid (idx 220)) 150,
+	resolv (rid_ (idx  13)) (rid_ (idx 120)) 156,
+	resolv (rid_ (idx 156)) (rid_ (idx 160)) 155,
+	resolv (rid_ (idx 155)) (rid_ (idx 190)) 154,
+	resolv (rid_ (idx 154)) (rid_ (idx 160)) 153,
+	resolv (rid_ (idx 153)) (rid_ (idx 200)) 152,
+	resolv (rid_ (idx 152)) (rid_ (idx 210)) 151,
+	resolv (rid_ (idx 151)) (rid_ (idx 220)) 150,
 
-	resolv (rid (idx  13)) (rid (idx 110)) 146,
-	resolv (rid (idx 146)) (rid (idx 160)) 145,
-	resolv (rid (idx 145)) (rid (idx 120)) 144,
-	resolv (rid (idx 144)) (rid (idx 160)) 143,
-	resolv (rid (idx 143)) (rid (idx 170)) 142,
-	resolv (rid (idx 142)) (rid (idx 180)) 141,
-	resolv (rid (idx 141)) (rid (idx 150)) 140,
+	resolv (rid_ (idx  13)) (rid_ (idx 110)) 146,
+	resolv (rid_ (idx 146)) (rid_ (idx 160)) 145,
+	resolv (rid_ (idx 145)) (rid_ (idx 120)) 144,
+	resolv (rid_ (idx 144)) (rid_ (idx 160)) 143,
+	resolv (rid_ (idx 143)) (rid_ (idx 170)) 142,
+	resolv (rid_ (idx 142)) (rid_ (idx 180)) 141,
+	resolv (rid_ (idx 141)) (rid_ (idx 150)) 140,
 
-	resolv (rid (idx  26)) (rid (idx 110)) 104,
-	resolv (rid (idx 104)) (rid (idx 120)) 103,
-	resolv (rid (idx 103)) (rid (idx   7)) 102,
-	resolv (rid (idx 102)) (rid (idx 140)) 101,
-	resolv (rid (idx 101)) (rid (idx 150))   0
+	resolv (rid_ (idx  26)) (rid_ (idx 110)) 104,
+	resolv (rid_ (idx 104)) (rid_ (idx 120)) 103,
+	resolv (rid_ (idx 103)) (rid_ (idx   7)) 102,
+	resolv (rid_ (idx 102)) (rid_ (idx 140)) 101,
+	resolv (rid_ (idx 101)) (rid_ (idx 150))   0
 ] estate)
 (map [
 	pr   1 (some (x\ (p(is_wolf  x)) &+& (n(is_animal x)))),
